@@ -173,11 +173,7 @@ nav {
 .project-grid a {
     text-decoration: none;
     color: inherit;
-}
-
-.project-grid a:focus-visible {
-    outline: 2px solid #6cf;
-    outline-offset: 4px;
+    display: block;
 }
 
 .project-card {
@@ -401,3 +397,4 @@ footer {
     }
 
 }
+
