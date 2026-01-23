@@ -170,6 +170,16 @@ nav {
     gap: 2rem;
 }
 
+.project-grid a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.project-grid a:focus-visible {
+    outline: 2px solid #6cf;
+    outline-offset: 4px;
+}
+
 .project-card {
     background: var(--card-bg);
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -389,4 +399,5 @@ footer {
     .nav-links a {
         font-size: 0.6rem;
     }
+
 }
