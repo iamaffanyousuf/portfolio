@@ -168,6 +168,7 @@ nav {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
+    align-items: stretch;
 }
 
 .project-grid a {
@@ -178,6 +179,7 @@ nav {
 
 .project-card {
     background: var(--card-bg);
+    height: 100%;
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 12px;
     padding: 2.5rem;
@@ -209,6 +211,7 @@ nav {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
+    margin-top: auto;
 }
 
 /* --- Experience/CV --- */
@@ -397,4 +400,5 @@ footer {
     }
 
 }
+
 
