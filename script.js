@@ -202,3 +202,12 @@ function draw() {
 }
 
 requestAnimationFrame(draw);
+
+// projects counter
+document.addEventListener("DOMContentLoaded", () => {
+  const projectCards = document.querySelectorAll(".project-card");
+  const countElement = document.getElementById("project-count");
+  if (countElement && projectCards.length > 0) {
+    countElement.textContent = projectCards.length;
+  }
+});
