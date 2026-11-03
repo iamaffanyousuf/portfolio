@@ -121,6 +121,11 @@ nav {
   text-align: center;
   min-height: 80vh;
   padding: 4rem 1rem;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 /* Main Inner Wrapper */
@@ -187,31 +192,58 @@ nav {
   display: block;
 }
 
-/* Blurry Frosted Mask Overlay */
+/* Real Sheet Mask Overlay */
 .hero-image-mask {
   position: absolute;
   inset: 8px; /* Matches wrapper padding to cover image precisely */
   border-radius: 50%;
-  /* Frosting effect */
-  backdrop-filter: blur(4px) saturate(120%);
-  -webkit-backdrop-filter: blur(4px) saturate(120%); /* Safari support */
+  pointer-events: auto; /* Allows clicking through mask */
+  z-index: 10;
 
-  /* Tint & Scanlines */
+  /* 1. Translucent Sheet Mask Material (Cotton / Hydrogel texture) */
   background:
-    linear-gradient(
-      180deg,
-      rgba(10, 15, 30, 0.45) 0%,
-      rgba(0, 243, 255, 0.15) 100%
+    radial-gradient(
+      circle at 35% 25%,
+      rgba(255, 255, 255, 0.45) 0%,
+      transparent 10%
     ),
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0, 243, 255, 0.08) 2px,
-      rgba(0, 243, 255, 0.08) 4px
-    );
-  pointer-events: none;
-  z-index: 1;
+    /* Light Reflection */
+    radial-gradient(
+        circle at 50% 50%,
+        rgba(240, 245, 255, 0.55) 0%,
+        rgba(220, 230, 245, 0.75) 100%
+      );
+
+  /* 2. Soft Diffusion & Gloss */
+  backdrop-filter: blur(2px) saturate(10%);
+  -webkit-backdrop-filter: blur(2px) saturate(10%);
+
+  /* Disables long-press context menus on mobile devices */
+  -webkit-touch-callout: none;
+
+  /* 3. Outer Edge & Seam Depth */
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    inset 0 0 15px rgba(0, 0, 0, 0.15),
+    inset 0 2px 4px rgba(255, 255, 255, 0.8),
+    0 4px 12px rgba(0, 0, 0, 0.12);
+
+  /* 4. Facial Feature Cutouts (Eyes, Nose, Mouth) */
+  mask-image: 
+    /* Base Mask Sheet */
+    radial-gradient(circle at 50% 50%, #000 100%, transparent 100%),
+    /* Left Eye Cutout */ ellipse(12% 6% at 35% 42%),
+    /* Right Eye Cutout */ ellipse(12% 6% at 65% 42%),
+    /* Nose Slit Cutout */ ellipse(6% 10% at 50% 56%),
+    /* Mouth Cutout */ ellipse(14% 5% at 50% 72%);
+
+  /* Subtract cutouts from mask */
+  mask-composite: exclude;
+  -webkit-mask-image:
+    radial-gradient(circle at 50% 50%, #000 100%, transparent 100%),
+    ellipse(12% 6% at 35% 42%), ellipse(12% 6% at 65% 42%),
+    ellipse(6% 10% at 50% 56%), ellipse(14% 5% at 50% 72%);
+  -webkit-mask-composite: xor;
 }
 
 /* Animations */
@@ -240,6 +272,12 @@ nav {
   object-fit: cover;
   filter: saturate(110%) contrast(115%);
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 @keyframes hudRotate {
